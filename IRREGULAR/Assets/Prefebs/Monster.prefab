@@ -166,7 +166,7 @@ MonoBehaviour:
   _animCon:
   - {fileID: 9100000, guid: f2855d618fc8d9c499189d3f39b9cbbc, type: 2}
   - {fileID: 22100000, guid: 12cfc8b2360c2fc4499d4f6f6607671a, type: 2}
-  - {fileID: 9100000, guid: 247ef9581cb7e5a4d8973a5a61c79cb9, type: 2}
+  - {fileID: 22100000, guid: 9f77b6373cca2414c98da53251d74caf, type: 2}
 --- !u!114 &239491328199266086
 MonoBehaviour:
   m_ObjectHideFlags: 0
