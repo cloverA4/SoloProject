@@ -22,13 +22,14 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigid;
     private float _speed;
     private SpriteRenderer _spriter;
-
+    private Animator _playerAni;
 
     void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
         _speed = 3f;
         _spriter = GetComponent<SpriteRenderer>();
+        _playerAni = GetComponent<Animator>();
     }
 
     void Update()
@@ -45,9 +46,11 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
+        _playerAni.SetFloat("Speed", _inputVec.magnitude);
+
         if (_inputVec.x != 0)
         {
-            _spriter.flipX = _inputVec.x < 0;
+            _spriter.flipX = _inputVec.x < 0;   
         }
     }
 }
