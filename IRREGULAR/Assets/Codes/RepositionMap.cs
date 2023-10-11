@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class RepositionMap : MonoBehaviour
 {
+    Collider2D _coll;
+
+    private void Awake()
+    {
+        _coll = GetComponent<Collider2D>();
+    }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -30,8 +36,11 @@ public class RepositionMap : MonoBehaviour
                     transform.Translate(Vector3.up * DirY * 40); //수직이동
                 }
                 break;
-            case "Enemy":
-
+            case "Monster":
+                if (_coll.enabled) { // 콜라이더가 살아있다면 이건 나중에 죽었을때 꺼서 죽었을때 상호작용 안되게 만들예정
+                    transform.Translate(PlayerDir * 25 + new Vector3(Random.Range(-3f,3f), Random.Range(-3f, 3f),0f)); 
+                    // 맵의크기가 20 이기에 플레이어 기준으로 카메라가 안보이는 구간에서 재배치하기위해 5를 더함
+                }
                 break;
         }
     }

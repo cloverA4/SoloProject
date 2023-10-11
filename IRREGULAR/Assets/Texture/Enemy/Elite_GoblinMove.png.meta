@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -67,10 +67,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -115,7 +115,532 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Elite_GoblinMove_25
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 12
+        width: 360
+        height: 342
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bbd05616633ae04b953d05befbab037
+      internalID: -1665769665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_24
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 12
+        width: 366
+        height: 354
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab4795f66af63824ca0988cf8e3146e8
+      internalID: 1137938336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_23
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 12
+        width: 360
+        height: 366
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2337fb88ff79cf40a55f3695783c7a8
+      internalID: 109573247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_22
+      rect:
+        serializedVersion: 2
+        x: 1542
+        y: 12
+        width: 366
+        height: 342
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7182b45ce8436a845932fac74ad69516
+      internalID: 1208283328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_21
+      rect:
+        serializedVersion: 2
+        x: 2022
+        y: 12
+        width: 366
+        height: 354
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c364758e8968e04f9473e4fa9215caa
+      internalID: 298595544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_20
+      rect:
+        serializedVersion: 2
+        x: 2502
+        y: 14
+        width: 366
+        height: 372
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f06560f32b5b3d541a3998f5e963c62b
+      internalID: 324513778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_19
+      rect:
+        serializedVersion: 2
+        x: 2982
+        y: 12
+        width: 360
+        height: 342
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9034ce34fee509d4b9a85337467b7289
+      internalID: -554385199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_18
+      rect:
+        serializedVersion: 2
+        x: 3462
+        y: 12
+        width: 366
+        height: 354
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 429b1ee1ac5c52c4bb1fbb00bda4ba6a
+      internalID: 478671426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_17
+      rect:
+        serializedVersion: 2
+        x: 3942
+        y: 12
+        width: 360
+        height: 366
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7e15088f98725a44a8fc4443b4806a7
+      internalID: 2083680324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_16
+      rect:
+        serializedVersion: 2
+        x: 4422
+        y: 12
+        width: 366
+        height: 342
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b3db2dd890e04a4785cf7d07f998b6b
+      internalID: 1163176574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_15
+      rect:
+        serializedVersion: 2
+        x: 4902
+        y: 12
+        width: 366
+        height: 354
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa1fe3c15f69ff144bc17d387d7add92
+      internalID: 1213188341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_14
+      rect:
+        serializedVersion: 2
+        x: 5382
+        y: 6
+        width: 366
+        height: 372
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7c4eeb5426cce1469e9a516625c0e8a
+      internalID: 705554554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_13
+      rect:
+        serializedVersion: 2
+        x: 5878
+        y: 12
+        width: 360
+        height: 342
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2225107cb01d2d54f87edb416b56b7eb
+      internalID: 1357866236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_12
+      rect:
+        serializedVersion: 2
+        x: 6342
+        y: 12
+        width: 366
+        height: 354
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9171247987ea4b54f9b227829534e1ce
+      internalID: 1046128023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_11
+      rect:
+        serializedVersion: 2
+        x: 6822
+        y: 20
+        width: 360
+        height: 366
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 368715210a91430489e3164fd6a10a42
+      internalID: -288946070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_10
+      rect:
+        serializedVersion: 2
+        x: 7302
+        y: 12
+        width: 366
+        height: 342
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5f7fda728c90d049ae620920ad33b31
+      internalID: -738140973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_9
+      rect:
+        serializedVersion: 2
+        x: 7782
+        y: 12
+        width: 366
+        height: 354
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41aea2e7497e98b41945f3b21abc1e09
+      internalID: -211911700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_8
+      rect:
+        serializedVersion: 2
+        x: 8262
+        y: 14
+        width: 366
+        height: 372
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c5e82bf8d0be93409e3725ae1540225
+      internalID: -223767268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_7
+      rect:
+        serializedVersion: 2
+        x: 8742
+        y: 12
+        width: 360
+        height: 342
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 171da3c5207185a43b3e8ba312c25dad
+      internalID: 207563553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_6
+      rect:
+        serializedVersion: 2
+        x: 9223
+        y: 12
+        width: 366
+        height: 354
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb529267f45a4ee4fba772231e156a19
+      internalID: -85760414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_5
+      rect:
+        serializedVersion: 2
+        x: 9702
+        y: 12
+        width: 360
+        height: 366
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f75e74fb627838d45a50fe950935a5e6
+      internalID: -1727720204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_4
+      rect:
+        serializedVersion: 2
+        x: 10182
+        y: 12
+        width: 366
+        height: 342
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 529fc24827cbc9d45a4b4c0309ada2d4
+      internalID: -95857094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_3
+      rect:
+        serializedVersion: 2
+        x: 10662
+        y: 12
+        width: 366
+        height: 354
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca79d25f468984847908920a7f4465c8
+      internalID: 167908308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_2
+      rect:
+        serializedVersion: 2
+        x: 11143
+        y: 6
+        width: 366
+        height: 372
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b13d28aa9fba1a94b8f0144fc768c776
+      internalID: 830958813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elite_GoblinMove_1
+      rect:
+        serializedVersion: 2
+        x: 11622
+        y: 0
+        width: 366
+        height: 378
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9a4ac3e5750dea4a929ea8e9ae62c6a
+      internalID: -493340697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -126,7 +651,32 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Elite_GoblinMove_17: 2083680324
+      Elite_GoblinMove_19: -554385199
+      Elite_GoblinMove_4: -95857094
+      Elite_GoblinMove_3: 167908308
+      Elite_GoblinMove_2: 830958813
+      Elite_GoblinMove_18: 478671426
+      Elite_GoblinMove_25: -1665769665
+      Elite_GoblinMove_24: 1137938336
+      Elite_GoblinMove_23: 109573247
+      Elite_GoblinMove_12: 1046128023
+      Elite_GoblinMove_21: 298595544
+      Elite_GoblinMove_5: -1727720204
+      Elite_GoblinMove_20: 324513778
+      Elite_GoblinMove_10: -738140973
+      Elite_GoblinMove_9: -211911700
+      Elite_GoblinMove_16: 1163176574
+      Elite_GoblinMove_13: 1357866236
+      Elite_GoblinMove_6: -85760414
+      Elite_GoblinMove_1: -493340697
+      Elite_GoblinMove_8: -223767268
+      Elite_GoblinMove_22: 1208283328
+      Elite_GoblinMove_11: -288946070
+      Elite_GoblinMove_7: 207563553
+      Elite_GoblinMove_14: 705554554
+      Elite_GoblinMove_15: 1213188341
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
