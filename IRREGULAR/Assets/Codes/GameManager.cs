@@ -3,8 +3,17 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    
-    
+
+    float _gameTime;
+    float _maxGameTime = 2 * 10;
+
+    //½Ì±ÛÅæ
+    public float GameTime
+    {
+        get { return _gameTime; }
+        set { _gameTime = value; }
+    }
+
     private void Awake()
     {
         if (instance == null)
@@ -18,9 +27,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        _gameTime += Time.deltaTime;
+
+        if (_gameTime > _maxGameTime)
+        {
+            _maxGameTime = _maxGameTime;
+        }
     }
+
 }
