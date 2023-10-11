@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -18,16 +16,33 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //º¯¼öµé
     private Vector2 _inputVec;
     private Rigidbody2D _rigid;
-    private float _speed;
+    [SerializeField]private float _speed;
     private SpriteRenderer _spriter;
     private Animator _playerAni;
+  
+    //½Ì±ÛÅæ
+    public Vector2 InputVec 
+    {
+        get { return _inputVec; }
+        set { _inputVec = value; }
+    }
+   
 
     void Awake()
     {
+        if (instance == null)
+        {
+            instance = this; 
+            DontDestroyOnLoad(gameObject); 
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
         _rigid = GetComponent<Rigidbody2D>();
-        _speed = 3f;
         _spriter = GetComponent<SpriteRenderer>();
         _playerAni = GetComponent<Animator>();
     }
