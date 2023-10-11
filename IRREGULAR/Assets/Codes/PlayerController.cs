@@ -20,25 +20,34 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 _inputVec;
     private Rigidbody2D _rigid;
+    private float _speed;
+    private SpriteRenderer _spriter;
 
 
     void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
+        _speed = 3f;
+        _spriter = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        _inputVec.x = Input.GetAxis("Horizontal");
-        _inputVec.y = Input.GetAxis("Vertical");
+        _inputVec.x = Input.GetAxisRaw("Horizontal");
+        _inputVec.y = Input.GetAxisRaw("Vertical");
     }
 
     private void FixedUpdate()
     {
-        _rigid.AddForce(_inputVec);
+        Vector2 nextVec = _inputVec.normalized * _speed * Time.fixedDeltaTime;
+        _rigid.MovePosition(_rigid.position + nextVec);
+    }
 
-        _rigid.velocity = _inputVec;
-
-        _rigid.MovePosition(_rigid.position + _inputVec);
+    private void LateUpdate()
+    {
+        if (_inputVec.x != 0)
+        {
+            _spriter.flipX = _inputVec.x < 0;
+        }
     }
 }
