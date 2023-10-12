@@ -6,7 +6,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] PlayerController _player;
     [SerializeField] PoolManager _poolManager;
+    [SerializeField] LevelUp _uiLevelUp;
 
+    //게임 시간
+    bool _isLive = true; //일단 true
     float _gameTime;
     float _maxGameTime = 2 * 10;
 
@@ -28,6 +31,11 @@ public class GameManager : MonoBehaviour
     {
         get { return _poolManager; }
         set { _poolManager = value; }
+    }
+    public bool IsLive
+    {
+        get { return _isLive; }
+        set { _isLive = value; }
     }
     public float gameTime
     {
@@ -84,14 +92,45 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        _playerHealth = _playerMaxHealth;
+
+        _uiLevelUp.Select(0);
+    }
+
     void Update()
     {
+        if (!_isLive)
+            return;
+
         _gameTime += Time.deltaTime;
 
-        if (_gameTime > _maxGameTime)
-        {
-            _maxGameTime = _maxGameTime;
+        if (_gameTime > _maxGameTime){
+            _gameTime = _maxGameTime;
         }
     }
 
+    public void GetExp()
+    {
+        exp++;
+
+        if (_exp == _nextExp[Mathf.Min(playerlevel,nextExp.Length-1)]){ //레벨오르면 오류뜸 만랩이됫을때 비교해서 낮은거만 뜨게 경험치량
+            _playerlevel++;
+            _exp = 0;
+            _uiLevelUp.Show();
+        }
+    }
+
+    public void Stop()
+    {
+        _isLive = false;
+        Time.timeScale = 0; //유니티 시간 속도 0
+    }
+
+    public void Resume()
+    {
+        _isLive = true;
+        Time.timeScale = 1;
+    }
 }

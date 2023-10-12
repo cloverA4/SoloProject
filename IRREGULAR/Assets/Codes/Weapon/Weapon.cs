@@ -11,18 +11,28 @@ public class Weapon : MonoBehaviour
     float _timer;
     PlayerController _player;
 
-    private void Awake()
+    public int Id
     {
-        _player = GetComponentInParent<PlayerController>();
+        get { return _id; }
+        set { _id = value; }
     }
 
-    private void Start()
+    public float Speed
     {
-        Init();
+        get { return _speed; }
+        set { _speed = value; }
+    }
+
+    private void Awake()
+    {
+        _player = GameManager.Instance.Player;
     }
 
     private void Update()
     {
+        if (!GameManager.Instance.IsLive)
+            return; // ½Ã°£¸Ø­ŸÀ»¶§ ÀÔ·Âµµ ¹ÞÁö ¾Ê±â
+
         switch (_id)
         {
             case 0:
@@ -38,14 +48,32 @@ public class Weapon : MonoBehaviour
                 }
                 break;
         }
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump")) //Å×½ºÆ®¿ë ·¹º§¾÷
         {
             LevelUp(10, 1);
         }
     }
 
-    public void Init()
+    public void Init(ItemData data)
     {
+        //±âº»¼¼ÆÃ
+        name = "Weapon " + data.ItemId;
+        transform.parent = _player.transform; // ºÎ¸ð¸¦ ÇÃ·¹ÀÌ¾î·Î
+        transform.localPosition = Vector3.zero; // ÇÃ·¹ÀÌ¾î Áö¿ªÀ§Ä¡ÀÇ ¿øÁ¡À¸·Î º¯°æ
+
+        //¾ÆÀÌÅÛ ³»ºÎ °ªµé
+        _id = data.ItemId;
+        _damage = data.BaseDamage;
+        _count = data.BaseCount;
+
+        for (int index = 0; index < GameManager.Instance.PoolManager.Prefabs.Length; index++) {
+            if (data.Projectile == GameManager.Instance.PoolManager.Prefabs[index])
+            {
+                _prefebId = index;
+                break;
+            }
+        }
+
         switch (_id)
         {
             case 0:
@@ -53,18 +81,17 @@ public class Weapon : MonoBehaviour
                 Batch();
                 break;
             case 1:
-                _speed = 0.3f;
+                _speed = 0.4f;
                 break;
         }
-    }
+        //Àåºñ Âø¿ë Àû¿ë
+        Equip equip = _player.EquipWeapon[(int)data.Type];
+        equip.Spriter.sprite = data.Equip;
+        equip.gameObject.SetActive(true);
 
-    public void LevelUp(float damage, int count)
-    {
-        this._damage = damage;
-        this._count += count;
-
-        if(_id == 0)
-            Batch();
+        _player.BroadcastMessage("ApplyPassive", SendMessageOptions.DontRequireReceiver);
+        //Æ¯Á¤ ÇÔ¼ö È£ÃâÀ» ¸ðµç ÀÚ½Ä¿¡°Ô ¹æ¼ÛÇÏ´Â ÇÔ¼ö ´ÜÇÏ³ªÀÇ ¿ÀºêÁ§Æ®°¡¾Æ´Ï¶ó ÇÃ·¹ÀÌ¾î°¡°¡Áø ¸ðµç ÀÚ½Ä¿¡°Ô ApplyPassive ¸¦ ½ÇÇàÇÏ¶ó°í È£ÁÙÇÔ
+        //¿Ö³ÄÇÏ¸é Àåºñ¸¦ ¾÷±×·¹ÀÌµå ÇÒ¶§¿¡µµ °ø°Ý¼Óµµ °è»ê½ÄÀÌ »õ·Î µé¾î°¡¾ß ÇÏ±â ‹š¹®ÀÌ´Ù
     }
 
     void Batch()
@@ -92,6 +119,18 @@ public class Weapon : MonoBehaviour
             pick.GetComponent<Pick>().Init(_damage, -1, Vector3.zero); // -1 ´Â ¹«Á¶²« °üÅëÇÏ°Ô ¸¸µé¾îÁÖ´Â °ÍÀÌ´Ù.
         }
     }
+
+    public void LevelUp(float damage, int count)
+    {
+        this._damage = damage;
+        this._count += count;
+
+        if(_id == 0)
+            Batch();
+
+        _player.BroadcastMessage("ApplyPassive",SendMessageOptions.DontRequireReceiver);
+    }
+
 
     void Fire()
     {

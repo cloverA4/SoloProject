@@ -11,6 +11,12 @@ public class PoolManager : MonoBehaviour
     // 풀담당을 하는 리스트들
     List<GameObject>[] _pools;
 
+    public GameObject[] Prefabs
+    {
+        set { _prefabs = value;  }
+        get { return _prefabs; }
+    }
+
     private void Awake()
     {
         _pools = new List<GameObject>[_prefabs.Length]; //프리팹의 길이만큼
@@ -19,8 +25,6 @@ public class PoolManager : MonoBehaviour
         {
             _pools[index] = new List<GameObject>();
         }
-
-        Debug.Log(_pools.Length);
     }
 
     public GameObject Get(int index) //게임오브젝트를 반환하는 함수 //몬스터 생성

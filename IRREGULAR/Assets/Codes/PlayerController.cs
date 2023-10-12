@@ -22,18 +22,29 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private float _speed;
     private SpriteRenderer _spriter;
     private Animator _playerAni;
-    [SerializeField]private Scanner _scanner;
-  
+    [SerializeField] private Scanner _scanner;
+    [SerializeField] Equip[] _equipWeapon; // 
+
     //½Ì±ÛÅæ
     public Vector2 InputVec 
     {
         get { return _inputVec; }
         set { _inputVec = value; }
     }
+    public float Speed
+    {
+        get { return _speed; }
+        set { _speed = value; }
+    }
     public Scanner Scanner
     {
         get { return _scanner; }
         set { _scanner = value; }
+    }
+    public Equip[] EquipWeapon
+    {
+        get { return _equipWeapon; }
+        set { _equipWeapon = value; }
     }
 
 
@@ -52,22 +63,30 @@ public class PlayerController : MonoBehaviour
         _spriter = GetComponent<SpriteRenderer>();
         _playerAni = GetComponent<Animator>();
         _scanner = GetComponent<Scanner>();
+        _equipWeapon = GetComponentsInChildren<Equip>(true); // ÀÎÀÚ°ª¿¡ true¸¦ ³ÖÀ¸¸é È°¼ºÈ­°¡ ¾ÈµÈ ¿ÀºêÁ§Æ®µµ GetComponent¸¦ ÇÒ¼öÀÖ´Ù
     }
 
     void Update()
     {
+        if (!GameManager.Instance.IsLive)
+            return; // ½Ã°£¸Ø­ŸÀ»¶§ ÀÔ·Âµµ ¹ÞÁö ¾Ê±â
         _inputVec.x = Input.GetAxisRaw("Horizontal");
         _inputVec.y = Input.GetAxisRaw("Vertical");
     }
 
     private void FixedUpdate()
     {
+        if (!GameManager.Instance.IsLive)
+            return; // ½Ã°£¸Ø­ŸÀ»¶§ ÀÔ·Âµµ ¹ÞÁö ¾Ê±â
         Vector2 nextVec = _inputVec.normalized * _speed * Time.fixedDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);
     }
 
     private void LateUpdate()
     {
+        if (!GameManager.Instance.IsLive)
+            return; // ½Ã°£¸Ø­ŸÀ»¶§ ÀÔ·Âµµ ¹ÞÁö ¾Ê±â
+
         _playerAni.SetFloat("Speed", _inputVec.magnitude);
 
         if (_inputVec.x != 0)

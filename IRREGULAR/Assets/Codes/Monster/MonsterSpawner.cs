@@ -15,6 +15,9 @@ public class MonsterSpawner : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.Instance.IsLive)
+            return; // ½Ã°£¸Ø­ŸÀ»¶§ ÀÔ·Âµµ ¹ŞÁö ¾Ê±â
+
         timer += Time.deltaTime;
         _level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.gameTime / 10f), _spawnData.Length -1); // float¸¦ int·Î ¹Ù²ãÁÖ±âÀ§ÇØ ¼Ò¼öÁ¡ ¾Æ·¡´Â ¹ö¸®´Â ÇÔ¼öÃß°¡
 
