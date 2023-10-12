@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
@@ -18,7 +16,7 @@ public class MonsterSpawner : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        _level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.GameTime / 10f), _spawnData.Length -1); // float를 int로 바꿔주기위해 소수점 아래는 버리는 함수추가
+        _level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 10f), _spawnData.Length -1); // float를 int로 바꿔주기위해 소수점 아래는 버리는 함수추가
 
         if (timer > _spawnData[_level].spawnTime) // 
         {
