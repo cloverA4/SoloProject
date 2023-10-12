@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private float _speed;
     private SpriteRenderer _spriter;
     private Animator _playerAni;
+    private Scanner _scanner;
   
     //ΩÃ±€≈Ê
     public Vector2 InputVec 
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
         _rigid = GetComponent<Rigidbody2D>();
         _spriter = GetComponent<SpriteRenderer>();
         _playerAni = GetComponent<Animator>();
+        _scanner = GetComponent<Scanner>();
     }
 
     void Update()

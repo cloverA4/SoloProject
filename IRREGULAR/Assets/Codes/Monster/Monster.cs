@@ -56,4 +56,25 @@ public class Monster : MonoBehaviour
         _maxHealth = data.health;
         _health = data.health;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Weapon"))
+            return;
+
+        _health -= collision.GetComponent<Pick>().Damage;
+
+        if (_health > 0){
+            // 살아 있을떄 피격 이벤트
+        }
+        else {
+            // 죽었을때
+            Dead();
+        }
+    }
+
+    void Dead()
+    {
+        gameObject.SetActive(false);
+    }
 }
