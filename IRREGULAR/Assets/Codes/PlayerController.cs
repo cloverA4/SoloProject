@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private float _speed;
     private SpriteRenderer _spriter;
     private Animator _playerAni;
-    private Scanner _scanner;
+    [SerializeField]private Scanner _scanner;
   
     //ΩÃ±€≈Ê
     public Vector2 InputVec 
@@ -30,7 +30,12 @@ public class PlayerController : MonoBehaviour
         get { return _inputVec; }
         set { _inputVec = value; }
     }
-   
+    public Scanner Scanner
+    {
+        get { return _scanner; }
+        set { _scanner = value; }
+    }
+
 
     void Awake()
     {

@@ -7,6 +7,14 @@ public class Scanner : MonoBehaviour
     [SerializeField] RaycastHit2D[] _targets;
     [SerializeField] Transform _nearestTarget = null;
 
+    //ΩÃ±€≈ÊµÈ
+    public Transform NearestTarget
+    {
+        get { return _nearestTarget; }
+        set { _nearestTarget = value; }
+    }
+
+
     private void FixedUpdate()
     {
         _targets = Physics2D.CircleCastAll(transform.position, _scanRange, Vector2.zero, 0,_targetLayer);
@@ -31,11 +39,6 @@ public class Scanner : MonoBehaviour
             }
         }
         return result;
-    }
-
-    public Transform NearestTarget()
-    {
-        return _nearestTarget;
     }
 }
 
