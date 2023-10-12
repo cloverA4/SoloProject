@@ -5644,6 +5644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 200754956}
+  _poolManager: {fileID: 474452348}
 --- !u!1 &793406509
 GameObject:
   m_ObjectHideFlags: 0

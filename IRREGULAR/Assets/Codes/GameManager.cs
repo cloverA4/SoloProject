@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance;
 
-    [SerializeField]
-    PlayerController _player;
+    [SerializeField] PlayerController _player;
+    [SerializeField] PoolManager _poolManager;
 
     float _gameTime;
     float _maxGameTime = 2 * 10;
@@ -23,6 +23,11 @@ public class GameManager : MonoBehaviour
     {
         get { return _player; }
         set { _player = value; }
+    }
+    public PoolManager PoolManager
+    {
+        get { return _poolManager; }
+        set { _poolManager = value; }
     }
     public float gameTime
     {
@@ -68,9 +73,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else

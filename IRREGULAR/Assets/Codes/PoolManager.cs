@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    public static PoolManager instance;
 
     // 프리팹들을 보관할 변수
     [SerializeField] GameObject[] _prefabs;
@@ -14,16 +13,6 @@ public class PoolManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-
         _pools = new List<GameObject>[_prefabs.Length]; //프리팹의 길이만큼
 
         for (int index = 0; index < _pools.Length; index++) // for문 시작문,조건문,중감문
