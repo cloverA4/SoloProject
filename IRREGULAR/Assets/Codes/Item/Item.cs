@@ -54,6 +54,10 @@ public class Item : MonoBehaviour
             case ItemData.ItemType.CocaLeaf:
                 _textDesc.text = string.Format(_data.ItemDesc);
                 break;
+            case ItemData.ItemType.Magnet:
+                _textDesc.text = string.Format(_data.ItemDesc, _data.Damages[_level]);
+                break;
+
         }
     }
 
@@ -96,6 +100,9 @@ public class Item : MonoBehaviour
                 break;
             case ItemData.ItemType.CocaLeaf:
                 GameManager.Instance.playerHealth = GameManager.Instance.playerMaxHealth;
+                break;
+            case ItemData.ItemType.Magnet:
+                PlayerController.Instance.Scanner.ExpScanRange += _data.Damages[_level];
                 break;
         }
         if (_level == _data.Damages.Length){

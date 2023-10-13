@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     //게임 시간
     bool _isLive = true; //일단 true
     float _gameTime;
-    float _maxGameTime = 2 * 10;
+    float _maxGameTime = 600;
 
     //플레이어 정보들
     float _playerHealth;
@@ -111,9 +111,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GetExp()
+    public void GetExp(int expNum)
     {
-        exp++;
+        _exp += expNum;
 
         if (_exp == _nextExp[Mathf.Min(playerlevel,nextExp.Length-1)]){ //레벨오르면 오류뜸 만랩이됫을때 비교해서 낮은거만 뜨게 경험치량
             _playerlevel++;

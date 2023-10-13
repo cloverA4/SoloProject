@@ -8,6 +8,7 @@ TagManager:
   - Area
   - Monster
   - Weapon
+  - Exp
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Water
   - UI
   - Monster
-  - 
+  - Exp
   - 
   - 
   - 

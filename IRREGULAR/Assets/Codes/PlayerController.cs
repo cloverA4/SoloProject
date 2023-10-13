@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private float _speed;
     private SpriteRenderer _spriter;
     private Animator _playerAni;
-    [SerializeField] private Scanner _scanner;
+    private Scanner _scanner;
     [SerializeField] Equip[] _equipWeapon; // 
 
     //ΩÃ±€≈Ê

@@ -83,13 +83,14 @@ public class Monster : MonoBehaviour
         }
         else {
             // 죽었을때
+            GameObject Exp = GameManager.Instance.PoolManager.Get(Random.Range(3, 5)); // 풀매니저에 있는 3,4 번 생성
+            Exp.transform.position = gameObject.transform.position;
             _isLive = false;
             _collider.enabled = false; // 충돌 비활성화
             _rigid.simulated = false; // 물리 비활성화
             _spriter.sortingOrder = 1; // 죽었을때 레이어 값내려 다른 위에 안보이게
             _anim.SetBool("Dead", true);
             GameManager.Instance.kill++;
-            GameManager.Instance.GetExp();
             // 애니메이션이 끝나면죽게 애니메이션 클립에 이벤트로 생성
         }
     }

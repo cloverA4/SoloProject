@@ -23,7 +23,7 @@ public class HUD : MonoBehaviour
         //인덱스순번 : F0은 소수점자릿수
         MonsterKillText.text = string.Format("{0:F0}", GameManager.Instance.kill);
         //시간텍스트
-        float remainTime = GameManager.Instance.maxGameTime + GameManager.Instance.gameTime;
+        float remainTime = GameManager.Instance.gameTime;
         int min = Mathf.FloorToInt(remainTime / 60);
         int sec = Mathf.FloorToInt(remainTime % 60);
         TimeText.text = string.Format("{0:D2}:{1:D2}", min, sec);

@@ -10,6 +10,7 @@ public class ItemData : ScriptableObject
         Glove,
         Shoe,
         CocaLeaf,
+        Magnet,
     }
 
     [Header("# Main Info")]
@@ -91,10 +92,6 @@ public class ItemData : ScriptableObject
         set { _equip = value; }
         get { return _equip; }
     }
-
-
-
-
 }
 
 
