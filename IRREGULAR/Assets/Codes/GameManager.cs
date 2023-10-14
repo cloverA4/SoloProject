@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,11 +9,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] PlayerController _player;
     [SerializeField] PoolManager _poolManager;
     [SerializeField] LevelUp _uiLevelUp;
+    [SerializeField] GameResult _uiResult; // 게임결과 Ui 오브젝트를 저장할 변수 선언 및 초기화
+    [SerializeField] GameObject _enemyCleaner; //게임 승리할 때 적을 정리하는 클리너 변수
 
     //게임 시간
-    bool _isLive = true; //일단 true
+    bool _isLive; //일단 true
     float _gameTime;
-    float _maxGameTime = 600;
+    float _maxGameTime = 10;
 
     //플레이어 정보들
     float _playerHealth;
@@ -54,7 +58,7 @@ public class GameManager : MonoBehaviour
     }
     public float playerMaxHealth
     {
-        get { return _playerMaxHealth = 10; }
+        get { return _playerMaxHealth; }
         set { _playerMaxHealth = value; }
     }
     public int playerlevel
@@ -92,11 +96,49 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void GameStart()
     {
         _playerHealth = _playerMaxHealth;
-
         _uiLevelUp.Select(0);
+        Resume();
+    }
+
+    public void GameOver()
+    {
+        StartCoroutine(GameOverDelay());
+    }
+
+    IEnumerator GameOverDelay()
+    {
+        _isLive = false;
+
+        yield return new WaitForSeconds(0.5f);
+
+        _uiResult.gameObject.SetActive(true);
+        _uiResult.Lose();
+        Stop();
+    }
+
+    public void GameClear()
+    {
+        StartCoroutine(GameClearDelay());
+    }
+
+    IEnumerator GameClearDelay()
+    {
+        _enemyCleaner.SetActive(true);
+        _isLive = false;
+
+        yield return new WaitForSeconds(0.5f);
+
+        _uiResult.gameObject.SetActive(true);
+        _uiResult.Win();
+        Stop();
+    }
+
+    public void GameRetry()
+    {
+        SceneManager.LoadScene(0);
     }
 
     void Update()
@@ -108,11 +150,15 @@ public class GameManager : MonoBehaviour
 
         if (_gameTime > _maxGameTime){
             _gameTime = _maxGameTime;
+            GameClear();
         }
     }
 
     public void GetExp(int expNum)
     {
+        if (!_isLive)
+            return;
+
         _exp += expNum;
 
         if (_exp == _nextExp[Mathf.Min(playerlevel,nextExp.Length-1)]){ //레벨오르면 오류뜸 만랩이됫을때 비교해서 낮은거만 뜨게 경험치량

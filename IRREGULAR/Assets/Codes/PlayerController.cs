@@ -94,4 +94,23 @@ public class PlayerController : MonoBehaviour
             _spriter.flipX = _inputVec.x < 0;   
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(!GameManager.Instance.IsLive)
+            return;
+
+        GameManager.Instance.playerHealth -= Time.deltaTime * 10;
+
+        if (GameManager.Instance.playerHealth < 0)
+        {
+            for (int index = 2; index < transform.childCount; index++){
+                transform.GetChild(index).gameObject.SetActive(false);
+                //GetChild 주어진 인덱스의 자식 오브젝트를 반환하는 함수
+            }
+
+            _playerAni.SetTrigger("Dead");
+            GameManager.Instance.GameOver();
+        }
+    }
 }
