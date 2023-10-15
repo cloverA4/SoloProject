@@ -63,8 +63,8 @@ public class Weapon : MonoBehaviour
 
         //아이템 내부 값들
         _id = data.ItemId;
-        _damage = data.BaseDamage;
-        _count = data.BaseCount;
+        _damage = data.BaseDamage * CharacterStat.Damage;
+        _count = data.BaseCount + CharacterStat.Count;
 
         for (int index = 0; index < GameManager.Instance.PoolManager.Prefabs.Length; index++) {
             if (data.Projectile == GameManager.Instance.PoolManager.Prefabs[index])
@@ -77,11 +77,11 @@ public class Weapon : MonoBehaviour
         switch (_id)
         {
             case 0:
-                _speed = 150;
+                _speed = 150 * CharacterStat.WeaponSpeed;
                 Batch();
                 break;
             case 1:
-                _speed = 0.4f;
+                _speed = 0.4f * CharacterStat.WeaponRate;
                 break;
         }
         //장비 착용 적용
@@ -122,7 +122,7 @@ public class Weapon : MonoBehaviour
 
     public void LevelUp(float damage, int count)
     {
-        this._damage = damage;
+        this._damage = damage * CharacterStat.Damage;
         this._count += count;
 
         if(_id == 0)

@@ -23,8 +23,8 @@ public class MonsterSpawner : MonoBehaviour
 
         if (timer > _spawnData[_level].spawnTime) // 
         {
-            Spawn();
             timer = 0f;
+            Spawn();
         }        
     }
 

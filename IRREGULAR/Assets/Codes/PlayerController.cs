@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private Animator _playerAni;
     private Scanner _scanner;
     [SerializeField] Equip[] _equipWeapon; // 
+    [SerializeField] RuntimeAnimatorController[] _animCon;
 
     //싱글톤
     public Vector2 InputVec 
@@ -50,20 +51,27 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this; 
-            DontDestroyOnLoad(gameObject); 
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+        instance = this;
+        //if (instance == null)
+        //{
+        //    instance = this; 
+        //    DontDestroyOnLoad(gameObject); 
+        //}
+        //else
+        //{
+        //    Destroy(this.gameObject);
+        //}
         _rigid = GetComponent<Rigidbody2D>();
         _spriter = GetComponent<SpriteRenderer>();
         _playerAni = GetComponent<Animator>();
         _scanner = GetComponent<Scanner>();
         _equipWeapon = GetComponentsInChildren<Equip>(true); // 인자값에 true를 넣으면 활성화가 안된 오브젝트도 GetComponent를 할수있다
+    }
+
+    private void OnEnable()
+    {
+        _speed *= CharacterStat.Speed;
+        _playerAni.runtimeAnimatorController = _animCon[GameManager.Instance.PlayerId];
     }
 
     void Update()

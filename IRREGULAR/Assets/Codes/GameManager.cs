@@ -13,11 +13,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject _enemyCleaner; //게임 승리할 때 적을 정리하는 클리너 변수
 
     //게임 시간
-    bool _isLive; //일단 true
+    bool _isLive; 
     float _gameTime;
     float _maxGameTime = 10;
 
     //플레이어 정보들
+    int _playerId;
     float _playerHealth;
     float _playerMaxHealth = 10;
     int _playerlevel = 0;
@@ -50,6 +51,11 @@ public class GameManager : MonoBehaviour
     {
         get { return _maxGameTime; }
         set { _maxGameTime = value; }
+    }
+    public int PlayerId
+    {
+        get { return _playerId; }
+        set { _playerId = value; }  
     }
     public float playerHealth
     {
@@ -85,22 +91,39 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+        Instance = this;
+
+        //if (Instance == null)
+        //{
+        //    Instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //}
+        //else
+        //{
+        //    Destroy(this.gameObject);
+        //}
     }
 
-    public void GameStart()
+    public void GameStart(int id)
     {
+        _playerId = id;
         _playerHealth = _playerMaxHealth;
-        _uiLevelUp.Select(0);
+
+        _player.gameObject.SetActive(true);
+        _uiLevelUp.Select(_playerId % 2); // 첫번째 캐릭 (임시 스크립트)
         Resume();
+    }
+    void Update()
+    {
+        if (!_isLive)
+            return;
+
+        _gameTime += Time.deltaTime;
+
+        if (_gameTime > _maxGameTime){
+            _gameTime = _maxGameTime;
+            GameClear();
+        }
     }
 
     public void GameOver()
@@ -126,8 +149,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GameClearDelay()
     {
-        _enemyCleaner.SetActive(true);
         _isLive = false;
+        _enemyCleaner.SetActive(true);
 
         yield return new WaitForSeconds(0.5f);
 
@@ -141,18 +164,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    void Update()
-    {
-        if (!_isLive)
-            return;
-
-        _gameTime += Time.deltaTime;
-
-        if (_gameTime > _maxGameTime){
-            _gameTime = _maxGameTime;
-            GameClear();
-        }
-    }
 
     public void GetExp(int expNum)
     {
@@ -161,7 +172,7 @@ public class GameManager : MonoBehaviour
 
         _exp += expNum;
 
-        if (_exp == _nextExp[Mathf.Min(playerlevel,nextExp.Length-1)]){ //레벨오르면 오류뜸 만랩이됫을때 비교해서 낮은거만 뜨게 경험치량
+        if (_exp == _nextExp[Mathf.Min(_playerlevel,_nextExp.Length-1)]){ //레벨오르면 오류뜸 만랩이됫을때 비교해서 낮은거만 뜨게 경험치량
             _playerlevel++;
             _exp = 0;
             _uiLevelUp.Show();

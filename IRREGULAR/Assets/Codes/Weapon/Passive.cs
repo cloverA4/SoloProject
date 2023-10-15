@@ -47,10 +47,12 @@ public class Passive : MonoBehaviour
             switch (weapon.Id)
             {
                 case 0://근거리 공격속도
-                    weapon.Speed = 150 + (150 * _rate);
+                    float speed = 150 * CharacterStat.WeaponSpeed;
+                    weapon.Speed = speed + (speed * _rate);
                     break;
                 case 1://원거리공격속도
-                    weapon.Speed = 0.5f * (1f - _rate);
+                    speed = 0.5f * CharacterStat.WeaponRate;
+                    weapon.Speed = speed * (1f - _rate);
                     break;
             }
         }
@@ -58,7 +60,7 @@ public class Passive : MonoBehaviour
 
     void SpeedUp() //속도업
     {
-        float speed = 3;
+        float speed = 3 * CharacterStat.Speed;
         GameManager.Instance.Player.Speed = speed + speed * _rate;
     }
 }
