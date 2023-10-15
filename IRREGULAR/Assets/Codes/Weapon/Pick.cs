@@ -25,7 +25,7 @@ public class Pick : MonoBehaviour
         this._damage = damage; //this 해당클래스에 접근
         this._per = per;
 
-        if (per > -1) // 관통력이 있는 애들은 원거리 공격으로 거르기
+        if (per >= 0) // 관통력이 있는 애들은 원거리 공격으로 거르기
         {
             _rigid.velocity = dir * 15f;
         }
@@ -33,15 +33,23 @@ public class Pick : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Monster") || _per == -1) // 예외처리
+        if (!collision.CompareTag("Monster") || _per == -100) // 예외처리
             return;
 
         _per--;
 
-        if (_per <= -1) // 관통력이 없다면 쏜 발사체 꺼주기
+        if (_per < 0) // 관통력이 없다면 쏜 발사체 꺼주기
         {
             _rigid.velocity = Vector2.zero; // 위치 초기화
             gameObject.SetActive(false);
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Area") || _per == -100) // 예외처리
+            return;
+
+        gameObject.SetActive(false);
     }
 }

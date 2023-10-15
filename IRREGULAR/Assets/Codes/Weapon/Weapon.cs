@@ -116,7 +116,7 @@ public class Weapon : MonoBehaviour
             Vector3 rotVec = Vector3.forward * 360 * index / _count;
             pick.Rotate(rotVec);
             pick.Translate(pick.up * 1.5f, Space.World);
-            pick.GetComponent<Pick>().Init(_damage, -1, Vector3.zero); // -1 는 무조껀 관통하게 만들어주는 것이다.
+            pick.GetComponent<Pick>().Init(_damage, -100, Vector3.zero); // -1 는 무조껀 관통하게 만들어주는 것이다.
         }
     }
 

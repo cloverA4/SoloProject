@@ -4,6 +4,7 @@ public class MonsterSpawner : MonoBehaviour
 {
     [SerializeField] Transform[] _spawnPoint;
     [SerializeField] SpawnData[] _spawnData;
+    float _levelTime;
 
     int _level;
     float timer;
@@ -11,6 +12,7 @@ public class MonsterSpawner : MonoBehaviour
     private void Awake()
     {
         _spawnPoint = GetComponentsInChildren<Transform>();
+        _levelTime = GameManager.Instance.maxGameTime / _spawnData.Length;
     }
 
     void Update()
@@ -19,7 +21,7 @@ public class MonsterSpawner : MonoBehaviour
             return; // ½Ã°£¸Ø­ŸÀ»¶§ ÀÔ·Âµµ ¹ÞÁö ¾Ê±â
 
         timer += Time.deltaTime;
-        _level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.gameTime / 10f), _spawnData.Length -1); // float¸¦ int·Î ¹Ù²ãÁÖ±âÀ§ÇØ ¼Ò¼öÁ¡ ¾Æ·¡´Â ¹ö¸®´Â ÇÔ¼öÃß°¡
+        _level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.gameTime / _levelTime), _spawnData.Length -1); // float¸¦ int·Î ¹Ù²ãÁÖ±âÀ§ÇØ ¼Ò¼öÁ¡ ¾Æ·¡´Â ¹ö¸®´Â ÇÔ¼öÃß°¡
 
         if (timer > _spawnData[_level].spawnTime) // 
         {
