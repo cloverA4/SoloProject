@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86858cc9c39fb6e4b93f0bbb9dac69cd, type: 3}
-  m_Name: Item 2
+  m_Name: Item 7
   m_EditorClassIdentifier: 
-  _itemType: 2
-  _itemId: 2
-  _itemName: "\uC7A5\uAC11"
-  _itemDesc: "\uC5F0\uC0AC\uC18D\uB3C4 {0}% \uC99D\uAC00\n"
-  _itemIcon: {fileID: 2130688797, guid: 7a38c43288f8e7143b82940798a8ec08, type: 3}
+  _itemType: 7
+  _itemId: 7
+  _itemName: "\uC2ED\uC790\uAC00"
+  _itemDesc: "\uB370\uBBF8\uC9C0 {0}% \uC99D\uAC00\n\uAD00\uD1B5\uB825 {1} \uC99D\uAC00"
+  _itemIcon: {fileID: -35040501, guid: 7a38c43288f8e7143b82940798a8ec08, type: 3}
   _baseDamage: 0
   _baseCount: 0
   _Damages:
-  - 0.1
-  - 0.2
-  - 0.3
-  - 0.5
-  - 0.8
-  _counts: 0000000000000000000000000000000000000000
+  - 1
+  - 2
+  - 3
+  - 4
+  - 7
+  _counts: 
   _projectile: {fileID: 0}
   _equip: {fileID: 0}

@@ -67,6 +67,13 @@ public class Monster : MonoBehaviour
         _health = data.health;
     }
 
+    public void EliteInit()
+    {
+        _speed = 10;
+        _maxHealth = 100;
+        _health = 100;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!GameManager.Instance.IsLive)

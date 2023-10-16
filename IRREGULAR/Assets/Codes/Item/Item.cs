@@ -103,6 +103,7 @@ public class Item : MonoBehaviour
                 break;
             case ItemData.ItemType.Magnet:
                 PlayerController.Instance.Scanner.ExpScanRange += _data.Damages[_level];
+                _level++;
                 break;
         }
         if (_level == _data.Damages.Length){

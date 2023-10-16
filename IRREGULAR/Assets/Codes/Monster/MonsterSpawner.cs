@@ -7,12 +7,16 @@ public class MonsterSpawner : MonoBehaviour
     float _levelTime;
 
     int _level;
-    float timer;
+    float _timer;
+    float _eliteTimer;
+    float _initEliteTimer;
 
     private void Awake()
     {
         _spawnPoint = GetComponentsInChildren<Transform>();
-        _levelTime = GameManager.Instance.maxGameTime / _spawnData.Length;
+        _levelTime = (GameManager.Instance.maxGameTime - 60) / _spawnData.Length;
+        _eliteTimer = GameManager.Instance.maxGameTime - 60;
+        
     }
 
     void Update()
@@ -20,14 +24,22 @@ public class MonsterSpawner : MonoBehaviour
         if (!GameManager.Instance.IsLive)
             return; // ½Ã°£¸Ø­ŸÀ»¶§ ÀÔ·Âµµ ¹ÞÁö ¾Ê±â
 
-        timer += Time.deltaTime;
+        _timer += Time.deltaTime;
+        _initEliteTimer += Time.deltaTime;
+
         _level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.gameTime / _levelTime), _spawnData.Length -1); // float¸¦ int·Î ¹Ù²ãÁÖ±âÀ§ÇØ ¼Ò¼öÁ¡ ¾Æ·¡´Â ¹ö¸®´Â ÇÔ¼öÃß°¡
 
-        if (timer > _spawnData[_level].spawnTime) // 
+        if (_timer > _spawnData[_level].spawnTime) // 
         {
-            timer = 0f;
-            Spawn();
-        }        
+            _timer = 0f;
+            if (_eliteTimer > GameManager.Instance.gameTime)
+                Spawn();
+        }
+        if (_eliteTimer < _initEliteTimer) //
+        {
+            EliteMonsterSpawn();
+            _initEliteTimer = 0f;
+        }
     }
 
     void Spawn()
@@ -38,6 +50,12 @@ public class MonsterSpawner : MonoBehaviour
         Monster.GetComponent<Monster>().Init(_spawnData[_level]);
     }
 
+    void EliteMonsterSpawn()
+    {
+        GameObject Monster = GameManager.Instance.PoolManager.Get(5);
+        Monster.transform.position = _spawnPoint[Random.Range(1, _spawnPoint.Length)].position;
+        Monster.GetComponent<Monster>().EliteInit();
+    }
 }
 
 [System.Serializable]

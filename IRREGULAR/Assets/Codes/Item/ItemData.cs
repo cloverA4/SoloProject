@@ -11,6 +11,8 @@ public class ItemData : ScriptableObject
         Shoe,
         CocaLeaf,
         Magnet,
+        Bible,
+        Cross,
     }
 
     [Header("# Main Info")]

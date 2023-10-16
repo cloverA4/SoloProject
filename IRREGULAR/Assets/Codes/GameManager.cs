@@ -11,11 +11,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] LevelUp _uiLevelUp;
     [SerializeField] GameResult _uiResult; // 게임결과 Ui 오브젝트를 저장할 변수 선언 및 초기화
     [SerializeField] GameObject _enemyCleaner; //게임 승리할 때 적을 정리하는 클리너 변수
+    [SerializeField] GameObject _gameExitUi;
 
     //게임 시간
     bool _isLive; 
     float _gameTime;
-    float _maxGameTime = 10;
+    float _maxGameTime = 300;
 
     //플레이어 정보들
     int _playerId;
@@ -92,16 +93,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-
-        //if (Instance == null)
-        //{
-        //    Instance = this;
-        //    DontDestroyOnLoad(gameObject);
-        //}
-        //else
-        //{
-        //    Destroy(this.gameObject);
-        //}
     }
 
     public void GameStart(int id)
@@ -110,7 +101,9 @@ public class GameManager : MonoBehaviour
         _playerHealth = _playerMaxHealth;
 
         _player.gameObject.SetActive(true);
-        _uiLevelUp.Select(_playerId % 2); // 첫번째 캐릭 (임시 스크립트)
+        _uiLevelUp.Select(_playerId % 2); // 캐릭터선택시 아이디 확인
+        _gameExitUi.SetActive(false);
+
         Resume();
     }
     void Update()
@@ -123,6 +116,15 @@ public class GameManager : MonoBehaviour
         if (_gameTime > _maxGameTime){
             _gameTime = _maxGameTime;
             GameClear();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            _gameTime += 60;
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            exp++;
         }
     }
 
@@ -189,5 +191,10 @@ public class GameManager : MonoBehaviour
     {
         _isLive = true;
         Time.timeScale = 1;
+    }
+
+    public void GameExit()
+    {
+        Application.Quit(); 
     }
 }

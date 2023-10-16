@@ -66,7 +66,6 @@ public class Scanner : MonoBehaviour
             Vector3 targetPos = target.transform.position;
             
             float distance = Vector3.Distance(myPos, targetPos);
-            Debug.Log(target);
             if (distance < _expScanRange)
             {
                 target.transform.position = Vector3.MoveTowards(targetPos, myPos, 4f * Time.deltaTime);

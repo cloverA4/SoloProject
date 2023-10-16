@@ -47,6 +47,18 @@ public class Weapon : MonoBehaviour
                     Fire();
                 }
                 break;
+            case 3:
+                transform.Rotate(Vector3.back * _speed * Time.deltaTime);
+                break;
+            case 4:
+                _timer += Time.deltaTime;
+
+                if (_timer > _speed)
+                {
+                    _timer = 0;
+                    Fire();
+                }
+                break;
         }
         if (Input.GetButtonDown("Jump")) //테스트용 레벨업
         {
@@ -83,6 +95,13 @@ public class Weapon : MonoBehaviour
             case 1:
                 _speed = 0.4f * CharacterStat.WeaponRate;
                 break;
+            case 3:
+                _speed = 150 * CharacterStat.WeaponSpeed;
+                Batch();
+                break;
+            case 4:
+                _speed = 0.4f * CharacterStat.WeaponRate;
+                break;
         }
         //장비 착용 적용
         Equip equip = _player.EquipWeapon[(int)data.Type];
@@ -104,6 +123,34 @@ public class Weapon : MonoBehaviour
                 pick = transform.GetChild(index);
             }
             else{
+                pick = GameManager.Instance.PoolManager.Get(_prefebId).transform;
+                pick.parent = transform;
+            }
+            // 기존 오브젝트 활용하고 부족한것은 풀링에서 가져오기
+
+            pick.localPosition = Vector3.zero;
+            pick.localRotation = Quaternion.identity;
+
+            //한번삭제를 하고 다시 카운트만큼 생성해서 돌리기
+            Vector3 rotVec = Vector3.forward * 360 * index / _count;
+            pick.Rotate(rotVec);
+            pick.Translate(pick.up * 1.5f, Space.World);
+            pick.GetComponent<Pick>().Init(_damage, -100, Vector3.zero); // -1 는 무조껀 관통하게 만들어주는 것이다.
+        }
+    }
+
+    void Batch2()
+    {
+        for (int index = 0; index < _count; index++)
+        {
+            Transform pick;
+
+            if (index < transform.childCount)
+            {
+                pick = transform.GetChild(index);
+            }
+            else
+            {
                 pick = GameManager.Instance.PoolManager.Get(_prefebId).transform;
                 pick.parent = transform;
             }
@@ -147,5 +194,22 @@ public class Weapon : MonoBehaviour
         ore.position = transform.position;
         ore.rotation = Quaternion.FromToRotation(Vector3.up , dir);
         ore.GetComponent<Pick>().Init(_damage, _count, dir); 
+    }
+
+    void Fire2()
+    {
+        // 지정된목표가 없다면 리턴
+        if (!_player.Scanner.NearestTarget)
+            return;
+
+        Vector3 targetPos = _player.Scanner.NearestTarget.position;
+        Vector3 dir = targetPos - transform.position;
+        dir = dir.normalized; //현재 벡터의 방향은 유지하고 크기를 1로 변환된 속성
+        // task 쏠때 자기자신도 돌게 만들어야한다
+
+        Transform cross = GameManager.Instance.PoolManager.Get(_prefebId).transform;
+        cross.position = transform.position;
+        cross.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+        cross.GetComponent<Pick>().Init(_damage, _count, dir);
     }
 }

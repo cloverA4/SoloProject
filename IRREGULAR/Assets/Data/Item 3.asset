@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemType: 3
   _itemId: 3
-  _itemName: "\uAD11\uBD80 \uC2E0\uBC1C"
+  _itemName: "\uC2E0\uBC1C"
   _itemDesc: "\uC774\uB3D9\uC18D\uB3C4 {0}% \uC99D\uAC00"
   _itemIcon: {fileID: 1924366583, guid: 7a38c43288f8e7143b82940798a8ec08, type: 3}
   _baseDamage: 0

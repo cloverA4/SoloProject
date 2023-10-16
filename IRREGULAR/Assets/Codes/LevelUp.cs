@@ -49,18 +49,37 @@ public class LevelUp : MonoBehaviour
                 break;
         }
 
-        for (int index = 0; index < ran.Length; index++)
+        if (GameManager.Instance.PlayerId == 0)
         {
-            Item ranItem = _items[ran[index]];
-
-            // 만랩이 되었을때 소비아이템으로 변경
-            if (ranItem.level == ranItem.Data.Damages.Length)
+            for (int index = 0; index < ran.Length; index++)
             {
-                _items[4].gameObject.SetActive(true); // 하드코딩 마지막꺼 켜주기 이거말고 수정 요함
+                Item ranItem = _items[ran[index]];
+
+                // 만랩이 되었을때 소비아이템으로 변경
+                if (ranItem.level == ranItem.Data.Damages.Length)
+                {
+                    _items[4].gameObject.SetActive(true); // 하드코딩 마지막꺼 켜주기 이거말고 수정 요함
+                }
+                else
+                    ranItem.gameObject.SetActive(true);
             }
-            else
-            ranItem.gameObject.SetActive(true); 
         }
-        
+
+        if (GameManager.Instance.PlayerId == 1)
+        {
+            for (int index = 2; index < ran.Length; index++)
+            {
+                Item ranItem = _items[ran[index]];
+
+                // 만랩이 되었을때 소비아이템으로 변경
+                if (ranItem.level == ranItem.Data.Damages.Length)
+                {
+                    _items[4].gameObject.SetActive(true); // 하드코딩 마지막꺼 켜주기 이거말고 수정 요함
+                }
+                else
+                    ranItem.gameObject.SetActive(true);
+            }
+        }
+
     }
 }
