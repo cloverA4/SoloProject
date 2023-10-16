@@ -13,11 +13,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject _enemyCleaner; //게임 승리할 때 적을 정리하는 클리너 변수
     [SerializeField] Transform _uiJoy;
     [SerializeField] GameObject _gameExitUi;
+    [SerializeField] GameObject _OptionUiBtn;
+    [SerializeField] GameObject _OptionUi;
 
     //게임 시간
     bool _isLive; 
     float _gameTime;
-    float _maxGameTime = 300;
+    float _maxGameTime = 180;
 
     //플레이어 정보들
     int _playerId;
@@ -26,9 +28,14 @@ public class GameManager : MonoBehaviour
     int _playerlevel = 0;
     int _kill;
     int _exp;
-    int[] _nextExp = { 1, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 }; // 다음 경험치 필요 요구치
+    int[] _nextExp = { 1, 3, 7, 10, 15, 25, 30, 35, 40, 45, 50, 55 }; // 다음 경험치 필요 요구치
 
     //싱글톤
+    public GameObject OptionUiBtn
+    {
+        get { return _OptionUiBtn; }
+        set { _OptionUiBtn = value; }
+    }
     public PlayerController Player
     {
         get { return _player; }
@@ -119,17 +126,16 @@ public class GameManager : MonoBehaviour
 
         if (_gameTime > _maxGameTime){
             _gameTime = _maxGameTime;
+            
             GameClear();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (_gameTime > _maxGameTime-0.1f)
         {
-            _gameTime += 60;
+            _enemyCleaner.SetActive(true);
         }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            exp++;
-        }
+
+        
     }
 
     public void GameOver()
@@ -153,6 +159,7 @@ public class GameManager : MonoBehaviour
 
     public void GameClear()
     {
+        
         StartCoroutine(GameClearDelay());
     }
 
@@ -208,5 +215,22 @@ public class GameManager : MonoBehaviour
     public void GameExit()
     {
         Application.Quit(); 
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void Continue()
+    {
+        _OptionUi.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void OptUI()
+    {
+        _OptionUi.SetActive(true);
+        Time.timeScale = 0;
     }
 }

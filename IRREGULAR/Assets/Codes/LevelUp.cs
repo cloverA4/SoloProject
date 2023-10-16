@@ -20,6 +20,7 @@ public class LevelUp : MonoBehaviour
         GameManager.Instance.Stop();
         AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp);
         AudioManager.instance.EffectBgm(true);
+        GameManager.Instance.OptionUiBtn.SetActive(false);
     }
 
     public void Hide()
@@ -28,6 +29,7 @@ public class LevelUp : MonoBehaviour
         GameManager.Instance.Resume();
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Select);
         AudioManager.instance.EffectBgm(false);
+        GameManager.Instance.OptionUiBtn.SetActive(true);
     }
 
     public void Select(int index)

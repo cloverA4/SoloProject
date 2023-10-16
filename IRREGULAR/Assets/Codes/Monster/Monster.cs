@@ -85,7 +85,7 @@ public class Monster : MonoBehaviour
         }
         else {
             // 죽었을때
-            GameObject Exp = GameManager.Instance.PoolManager.Get(Random.Range(3, 5)); // 풀매니저에 있는 3,4 번 생성
+            GameObject Exp = GameManager.Instance.PoolManager.Get(Random.Range(3, 6)); // 풀매니저에 있는 3,4,5 번 생성
             Exp.transform.position = gameObject.transform.position;
             _isLive = false;
             _collider.enabled = false; // 충돌 비활성화

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] float _bgmVolume;
     [SerializeField] AudioSource _bgmPlayer;
     AudioHighPassFilter _bgmEffect;
+    [SerializeField] Slider _bgmVolumeSlider;
 
     [Header("SFX")]
     [SerializeField] AudioClip[] _sfxClips;
@@ -18,17 +20,19 @@ public class AudioManager : MonoBehaviour
     [SerializeField] int _channels;
     [SerializeField] AudioSource[] _sfxPlayers;
     [SerializeField] int _channelIndex;
+    [SerializeField] Slider _sfxVolumeSlider;
 
-    public enum Sfx 
+    public enum Sfx
     {
         Dead,
         Hit,
-        LevelUp =3,
+        LevelUp = 3,
         Lose,
         Melee,
-        Range =7,
+        Range = 7,
         Select,
         Win,
+        ExpOrb,
     }
 
     private void Awake()
@@ -65,10 +69,11 @@ public class AudioManager : MonoBehaviour
 
     public void PlayBgm(bool isPlay)
     {
-        if (isPlay){
+        if (isPlay)
+        {
             _bgmPlayer.Play();
         }
-        else { _bgmPlayer.Stop();}
+        else { _bgmPlayer.Stop(); }
     }
 
     public void EffectBgm(bool isPlay)
@@ -97,4 +102,14 @@ public class AudioManager : MonoBehaviour
             break;
         }
     }
+    public void BGMVolumeChange()
+    {
+        _bgmPlayer.volume = _bgmVolumeSlider.value;
+    }
+
+    public void SFXVolumeChange()
+    {
+        _sfxPlayers[_sfxPlayers.Length-1].volume = _sfxVolumeSlider.value;
+    }
+
 }

@@ -17,6 +17,11 @@ public class ExpOrb : MonoBehaviour
         {
             GameManager.Instance.GetExp(2);
         }
+        else if (GameManager.Instance.PoolManager.Prefabs[5])
+        {
+            GameManager.Instance.GetExp(3);
+        }
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.ExpOrb);
         gameObject.SetActive(false);
     }
 }
