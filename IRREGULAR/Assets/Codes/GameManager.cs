@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] LevelUp _uiLevelUp;
     [SerializeField] GameResult _uiResult; // 게임결과 Ui 오브젝트를 저장할 변수 선언 및 초기화
     [SerializeField] GameObject _enemyCleaner; //게임 승리할 때 적을 정리하는 클리너 변수
+    [SerializeField] Transform _uiJoy;
     [SerializeField] GameObject _gameExitUi;
 
     //게임 시간
@@ -93,6 +94,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Application.targetFrameRate = 60;
     }
 
     public void GameStart(int id)
@@ -105,6 +107,8 @@ public class GameManager : MonoBehaviour
         _gameExitUi.SetActive(false);
 
         Resume();
+        AudioManager.instance.PlayBgm(true);
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Select);
     }
     void Update()
     {
@@ -142,6 +146,9 @@ public class GameManager : MonoBehaviour
         _uiResult.gameObject.SetActive(true);
         _uiResult.Lose();
         Stop();
+
+        AudioManager.instance.PlayBgm(false);
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Lose);
     }
 
     public void GameClear()
@@ -159,6 +166,9 @@ public class GameManager : MonoBehaviour
         _uiResult.gameObject.SetActive(true);
         _uiResult.Win();
         Stop();
+
+        AudioManager.instance.PlayBgm(false);
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Win);
     }
 
     public void GameRetry()
@@ -185,12 +195,14 @@ public class GameManager : MonoBehaviour
     {
         _isLive = false;
         Time.timeScale = 0; //유니티 시간 속도 0
+        _uiJoy.localScale = Vector3.zero;
     }
 
     public void Resume()
     {
         _isLive = true;
         Time.timeScale = 1;
+        _uiJoy.localScale = Vector3.one;
     }
 
     public void GameExit()

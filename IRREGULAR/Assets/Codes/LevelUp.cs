@@ -18,12 +18,16 @@ public class LevelUp : MonoBehaviour
         Next();
         _rect.localScale = Vector3.one;
         GameManager.Instance.Stop();
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp);
+        AudioManager.instance.EffectBgm(true);
     }
 
     public void Hide()
     {
         _rect.localScale = Vector3.zero;
         GameManager.Instance.Resume();
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Select);
+        AudioManager.instance.EffectBgm(false);
     }
 
     public void Select(int index)
@@ -49,37 +53,22 @@ public class LevelUp : MonoBehaviour
                 break;
         }
 
-        if (GameManager.Instance.PlayerId == 0)
+
+        for (int index = 0; index < ran.Length; index++)
         {
-            for (int index = 0; index < ran.Length; index++)
+            Item ranItem = _items[ran[index]];
+
+            // 만랩이 되었을때 소비아이템으로 변경
+            if (ranItem.level == ranItem.Data.Damages.Length)
             {
-                Item ranItem = _items[ran[index]];
-
-                // 만랩이 되었을때 소비아이템으로 변경
-                if (ranItem.level == ranItem.Data.Damages.Length)
-                {
-                    _items[4].gameObject.SetActive(true); // 하드코딩 마지막꺼 켜주기 이거말고 수정 요함
-                }
-                else
-                    ranItem.gameObject.SetActive(true);
+                _items[4].gameObject.SetActive(true); // 하드코딩 마지막꺼 켜주기 이거말고 수정 요함
             }
+            else
+                ranItem.gameObject.SetActive(true);
         }
+        
 
-        if (GameManager.Instance.PlayerId == 1)
-        {
-            for (int index = 2; index < ran.Length; index++)
-            {
-                Item ranItem = _items[ran[index]];
-
-                // 만랩이 되었을때 소비아이템으로 변경
-                if (ranItem.level == ranItem.Data.Damages.Length)
-                {
-                    _items[4].gameObject.SetActive(true); // 하드코딩 마지막꺼 켜주기 이거말고 수정 요함
-                }
-                else
-                    ranItem.gameObject.SetActive(true);
-            }
-        }
+        
 
     }
 }

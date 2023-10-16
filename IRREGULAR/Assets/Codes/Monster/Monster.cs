@@ -67,12 +67,6 @@ public class Monster : MonoBehaviour
         _health = data.health;
     }
 
-    public void EliteInit()
-    {
-        _speed = 10;
-        _maxHealth = 100;
-        _health = 100;
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -87,6 +81,7 @@ public class Monster : MonoBehaviour
         if (_health > 0){
             // 살아 있을떄 피격 이벤트
             _anim.SetTrigger("Hit");
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
         }
         else {
             // 죽었을때
@@ -98,6 +93,9 @@ public class Monster : MonoBehaviour
             _spriter.sortingOrder = 1; // 죽었을때 레이어 값내려 다른 위에 안보이게
             _anim.SetBool("Dead", true);
             GameManager.Instance.kill++;
+
+            if(GameManager.Instance.IsLive)
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
             // 애니메이션이 끝나면죽게 애니메이션 클립에 이벤트로 생성
         }
     }

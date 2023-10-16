@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -78,15 +79,15 @@ public class PlayerController : MonoBehaviour
     {
         if (!GameManager.Instance.IsLive)
             return; // ½Ã°£¸Ø­ŸÀ»¶§ ÀÔ·Âµµ ¹ÞÁö ¾Ê±â
-        _inputVec.x = Input.GetAxisRaw("Horizontal");
-        _inputVec.y = Input.GetAxisRaw("Vertical");
+        //_inputVec.x = Input.GetAxisRaw("Horizontal");
+        //_inputVec.y = Input.GetAxisRaw("Vertical");
     }
 
     private void FixedUpdate()
     {
         if (!GameManager.Instance.IsLive)
             return; // ½Ã°£¸Ø­ŸÀ»¶§ ÀÔ·Âµµ ¹ÞÁö ¾Ê±â
-        Vector2 nextVec = _inputVec.normalized * _speed * Time.fixedDeltaTime;
+        Vector2 nextVec = _inputVec * _speed * Time.fixedDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);
     }
 
@@ -120,5 +121,10 @@ public class PlayerController : MonoBehaviour
             _playerAni.SetTrigger("Dead");
             GameManager.Instance.GameOver();
         }
+    }
+
+    void OnMove(InputValue value)
+    {
+        _inputVec = value.Get<Vector2>();
     }
 }
